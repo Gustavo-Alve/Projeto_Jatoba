@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Fabricante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img class="logo" src="{{ url_for('static',filename ='assets/logo.png' )}}" alt="Logo">
+            <h1 class="header-title">PORTAL DE TÉCNICOS</h1>
+            <img class="fibrote" src="{{ url_for('static',filename ='assets/fibrote_animado.png' )}}" alt="">
+
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/inicio" class="active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="/lista"><i class="fas fa-search"></i> Buscar Equipamento</a><li></li>
+                <li><a href="/"><i class="fas fa-cog"></i> Administração</a></li>
+                <li><a href="/sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="cadastro">
+        <a href="/"><button class="botoes">Cadastro de Fabricante</button></a>
+        <a href="/equipamento"><button class="botoes">Cadastro de Equipamento</button></a>
+    </div>
+    <form id="fabricanteForm">
+        <div>
+            <label for="nome">Nome do Fabricante:</label>
+            <input type="text" id="nome" name="nome" required>
+            <div id="nome-error"></div>
+        </div>
+        
+        <div>
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" required placeholder="Digite a descrição do aparelho"></textarea>
+            <div id="descricao-error"></div>
+        </div>
+        
+        <div>
+            <label for="imagem">Imagem do Fabricante:</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*" required>
+            <div id="imagem-error"></div>
+        </div>
+        
+        <button id="botao" type="submit">Cadastrar</button>
+        
+        <div id="message"></div>
+    </form>
+    
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+</body>
+</html>

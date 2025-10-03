@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+    <title>D</title>
+</head>
+    <body>
+        <header>
+        <div class="header-container">
+            <img class="logo" src="{{ url_for('static',filename ='assets/logo.png' )}}" alt="Logo">
+            <h1 class="header-title">PORTAL DE TÉCNICOS</h1>
+             <img class="fibrote" src="{{ url_for('static',filename ='assets/fibrote_animado.png' )}}" alt="">
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/inicio" class="active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="/lista"><i class="fas fa-search"></i> Buscar Equipamento</a><li></li>
+                <li><a href="/"><i class="fas fa-cog"></i> Administração</a></li>
+                <li><a href="/sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+            </ul>
+        </nav>
+        </header>
+
+        <main class="content">
+        <h1>BEM VINDO!!</h1>
+        <div class="mascotes">
+            <img class="mascote_img" src="{{ url_for('static',filename ='assets/fibrote_13.png' )}}" alt="">
+            <img class="mascote_img" src="{{ url_for('static',filename ='assets/fibrote_14.png' )}}" alt="">
+            <img class="mascote_img" src="{{ url_for('static',filename ='assets/fibrote_15.png' )}}" alt="">
+        </div>
+    </main>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img class="logo" src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo">
+            <h1 class="header-title">PORTAL DE TÉCNICOS</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/inicio" class="active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="/lista"><i class="fas fa-search"></i> Buscar Equipamento</a></li>
+                <li><a href="/"><i class="fas fa-cog"></i> Administração</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="sobre">
+            <h2>Sobre</h2>
+            <p>
+                Bem-vindo ao nosso site!<br><br>
+
+                Este site foi criado por <strong>Gustavo Martins</strong> com o objetivo de reunir e compartilhar informações sobre as principais marcas de roteadores do mercado. Aqui, você encontra comparações, análises e conteúdos que ajudam a entender melhor cada marca e seus modelos — desde opções mais simples até os roteadores mais potentes para gamers ou ambientes corporativos.<br><br>
+
+                A ideia surgiu da necessidade de ter um lugar centralizado com dados confiáveis e fáceis de entender sobre marcas como <strong>TP-Link, Multilaser, Intelbras, Tenda </strong>, entre outras.<br><br>
+
+                Seja você um usuário iniciante ou alguém mais experiente em redes, este site foi feito para ajudar na sua escolha.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

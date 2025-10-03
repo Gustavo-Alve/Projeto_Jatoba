@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lista.css') }}">
+    <title>Lista de Fabricantes</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img class="logo" src="{{ url_for('static',filename ='assets/logo.png' )}}" alt="Logo">
+            <h1 class="header-title">PORTAL DE TÉCNICOS</h1>
+            <div class="teste"></div>
+            <img class="fibrote" src="{{ url_for('static',filename ='assets/fibrote_animado.png' )}}" alt="">
+
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/inicio" class="active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="/lista"><i class="fas fa-search"></i> Buscar Equipamento</a><li></li>
+                <li><a href="/"><i class="fas fa-cog"></i> Administração</a></li>
+                <li><a href="/sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="botao">
+        <h1>Lista de Fabricantes</h1>
+        <a href="/" class="btn-cadastro">+ Cadastrar Novo Fabricante</a>
+    </div>
+    
+    <div id="loading" class="loading">
+        Carregando fabricantes...
+    </div>
+    
+    <div id="error" class="error" style="display: none;">
+    </div>
+    
+    <div id="fabricantes-container" class="fabricantes-grid">
+    </div>
+    
+    <div id="no-fabricantes" class="no-fabricantes" style="display: none;">
+        <p>Nenhum fabricante cadastrado ainda.</p>
+        <a href="/" class="btn-cadastro">Cadastrar o primeiro fabricante</a>
+    </div>
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/fabricante-loader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/list.js') }}"></script>
+</body>
+</html>
