@@ -4,6 +4,7 @@ from flask_cors import CORS
 from conect import inserir_fabricantes, mostrar_imagem, listar_fabricantes, fabricantes_opcoes,inserir_equipamento
 import os
 from werkzeug.utils import secure_filename
+from blueprints.main import main_bp, inicio_bp,equipamento_bp,sobre_bp,lista_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -12,9 +13,17 @@ UPLOAD_FOLDER = os.path.join('static', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/inicio')
-def inicio():
-    return render_template('inicio.html')
+#rotas
+app.register_blueprint(main_bp) #rota para o form
+app.register_blueprint(inicio_bp) #rota para o inicio
+app.register_blueprint(equipamento_bp) #rota para meu acessar o formulario de cadastro do equipamntos
+app.register_blueprint(sobre_bp)  #rota para acessar parte de sobre
+app.register_blueprint(lista_bp) #rota que retorna a lista com os fabricantes
+#
+
+
+
+
 # Rota que Busca Serve minhas imagens
 @app.route('/uploads/<filename>')
 def serve_image(filename):
@@ -106,7 +115,6 @@ def buscar_imagem(id_fabricante):
 
 
 
-
 #rota que faz a requisição para monstrar todos os fabricantes
 @app.route('/api/fabricantes', methods=['GET'])
 def obter_fabricantes():
@@ -115,7 +123,6 @@ def obter_fabricantes():
         return jsonify({"fabricantes": fabricantes}), 200
     except Exception as e:
         return jsonify({"erro": f"Erro interno: {str(e)}"}), 500
-
 
 
 #rota que usada para puxar o nome dos fabricantes e adicionar eles dinamicamente no meu html
@@ -127,27 +134,6 @@ def get_fabricantes():
     except Exception as e :
         return jsonify({'error': str(e)}), 500
     
-
-
-#rota para meu acessar o formulario de cadastro do equipamntos
-@app.route('/equipamento')
-def equip():
-    return render_template('equipamento.html')
-
-#rota para acessar parte de sobre
-@app.route('/sobre')
-def sobre():
-    return render_template('sobre.html')
-
-#rota que retorna a lista com os fabricantes
-@app.route('/lista')
-def lista_fabricantes():
-    return render_template('lista.html')
-
-# Rota para acessar o formulario de cadastro dos fabricantes
-@app.route('/')
-def index():
-    return render_template('form.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
