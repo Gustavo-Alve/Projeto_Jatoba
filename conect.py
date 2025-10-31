@@ -147,3 +147,50 @@ def mostrar_imagem(id_fabricante):
         if conexao.is_connected():
             cursor.close()
             conexao.close()
+
+
+def listar_modelos_por_fabricante(fabricante_id):
+    conexao = None
+    cursor = None
+    try:
+        conexao = mysql.connector.connect(
+            host="localhost",
+            database='your_database',
+            user="your_username",
+            password="your_password"
+        )
+        
+        if conexao.is_connected():
+            cursor = conexao.cursor() 
+            sql = """
+                SELECT m.id_modelos, m.nome, m.documento, m.imagem, 
+                       f.nome as fabricante_nome
+                FROM modelos m
+                INNER JOIN fabricantes f ON m.id_fabricantes = f.id_fabricantes
+                WHERE m.id_fabricantes = %s
+                ORDER BY m.nome
+            """
+            cursor.execute(sql, (fabricante_id,))
+            resultados = cursor.fetchall()
+            modelos = []
+                
+            for row in resultados:
+                modelo = {
+                    'id': row[0],
+                    'nome': row[1],
+                    'documento': row[2],
+                    'imagem': row[3],
+                    'fabricante_nome': row[4]
+                }
+                modelos.append(modelo)
+            return modelos
+
+    except Exception as e:
+        print(f"Erro ao listar modelos: {e}")
+        return []  # Retorna lista vazia em caso de erro
+        
+    finally:
+        if cursor:
+            cursor.close()       
+        if conexao and conexao.is_connected():
+            conexao.close()
