@@ -67,6 +67,11 @@ class FabricanteList {
         </div>
     </div>
     `;
+
+    // Adiciona evento de clique
+    card.addEventListener('click', () => {
+        this.carregarModelosFabricante(fabricante.id, fabricante.nome);
+    });
     
     return card;
 }
