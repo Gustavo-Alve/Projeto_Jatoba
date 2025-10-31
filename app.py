@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, send_from_directory, abort
 from flask_cors import CORS
 #funçoes que estou chamando no meu conect.py
-from conect import inserir_fabricantes, mostrar_imagem, listar_fabricantes, fabricantes_opcoes,inserir_equipamento
+from conect import inserir_fabricantes, mostrar_imagem, listar_fabricantes, fabricantes_opcoes,inserir_equipamento,listar_modelos_por_fabricante
 import os
 from werkzeug.utils import secure_filename
 from blueprints.main import main_bp, inicio_bp,equipamento_bp,sobre_bp,lista_bp
@@ -134,6 +134,15 @@ def get_fabricantes():
     except Exception as e :
         return jsonify({'error': str(e)}), 500
     
+
+@app.route('/api/modelos/<int:fabricante_id>', methods=['GET'])
+def obter_modelos_por_fabricante(fabricante_id):
+    try:
+        modelos = listar_modelos_por_fabricante(fabricante_id)
+        return jsonify({"modelos": modelos}), 200
+    except Exception as e:
+        return jsonify({"erro": f"Erro interno: {str(e)}"}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
