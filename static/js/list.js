@@ -125,6 +125,91 @@ class FabricanteList {
         
         this.loadFabricantes();
     }
+async carregarModelosFabricante(fabricanteId, fabricanteNome) {
+    try {
+        // Mostrar loading
+        this.showLoadingModelos();
+        
+        const response = await fetch(`/api/modelos/${fabricanteId}`);
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.erro || 'Erro ao carregar modelos');
+        }
+        
+        const modelos = data.modelos || [];
+        this.renderModelosFabricante(modelos, fabricanteNome);
+        
+    } catch (error) {
+        this.showError('Erro ao carregar equipamentos: ' + error.message);
+    }
+}
+
+showLoadingModelos() {
+    this.hideLoading();
+    const container = document.getElementById('fabricantes-container');
+    container.innerHTML = '<div class="loading">Carregando equipamentos...</div>';
+}
+
+renderModelosFabricante(modelos, fabricanteNome) {
+    const container = document.getElementById('fabricantes-container');
+    
+    // Botão voltar
+    const voltarBtn = document.createElement('button');
+    voltarBtn.textContent = '← Voltar para Fabricantes';
+    voltarBtn.className = 'btn-voltar';
+    voltarBtn.addEventListener('click', () => {
+        this.reload();
+    });
+    
+    // Título
+    const titulo = document.createElement('h2');
+    titulo.className = 'titulo-modelos';
+    titulo.textContent = `Equipamentos - ${fabricanteNome}`;
+    
+    // Container dos modelos
+    const gridModelos = document.createElement('div');
+    gridModelos.className = 'modelos-grid';
+    
+    if (modelos.length === 0) {
+        gridModelos.innerHTML = '<p class="no-modelos">Nenhum equipamento cadastrado para este fabricante.</p>';
+    } else {
+        modelos.forEach(modelo => {
+            const card = this.createModeloCard(modelo);
+            gridModelos.appendChild(card);
+        });
+    }
+    
+    // Montar tudo
+    container.innerHTML = '';
+    container.appendChild(voltarBtn);
+    container.appendChild(titulo);
+    container.appendChild(gridModelos);
+}
+
+createModeloCard(modelo) {
+    const card = document.createElement('div');
+    card.className = 'modelo-card';
+    
+    const imagemSrc = modelo.imagem ? `/uploads/${modelo.imagem}` : this.loader.getPlaceholderImage();
+
+    card.innerHTML = `
+        <img src="${imagemSrc}" 
+             alt="${modelo.nome}" 
+             class="modelo-imagem"
+             onerror="this.src='${this.loader.getPlaceholderImage()}'">
+        <div class="modelo-info">
+            <div class="modelo-nome">${this.escapeHtml(modelo.nome)}</div>
+            <div class="modelo-documento">
+                <a href="/uploads/${modelo.documento}" target="_blank" class="doc-link">
+                    📄 Ver Documentação
+                </a>
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
 }
 
 // Inicializar quando a página carregar
