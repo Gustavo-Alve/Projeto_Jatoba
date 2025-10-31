@@ -232,3 +232,92 @@ h1 {
         padding: 20px;
     }
 }
+
+/* Fabricantes clicáveis */
+.fabricante-card.clickable {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fabricante-card.clickable:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.click-hint {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Botão voltar */
+.btn-voltar {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.btn-voltar:hover {
+    background: #0056b3;
+}
+
+/* Grid de modelos */
+.modelos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.modelo-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.modelo-card:hover {
+    transform: translateY(-3px);
+}
+
+.modelo-imagem {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.modelo-nome {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.doc-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.doc-link:hover {
+    text-decoration: underline;
+}
+
+.no-modelos {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+.titulo-modelos {
+    color: #333;
+    margin-bottom: 20px;
+}
